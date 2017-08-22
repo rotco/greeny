@@ -71,3 +71,5 @@ font-size:24px">Greeny</a>
 </nav>
 
 @yield('body')
+
+@yield('footer')

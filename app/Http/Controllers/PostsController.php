@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
+
 
 class PostsController extends Controller
 {
@@ -13,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -23,7 +25,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
+
     }
 
     /**
@@ -33,9 +36,10 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+        Post::create($request->all());
+        return $request->all();
+}
 
     /**
      * Display the specified resource.
