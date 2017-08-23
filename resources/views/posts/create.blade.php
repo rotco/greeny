@@ -3,25 +3,53 @@
 @section('body')
     <div class="container">
         <h2>Create page</h2>
+        {!! Form::open(['method'=>'POST','action'=>'PostsController@store']) !!}
+        <div class="form-group">
+            {!! Form::label('user_id','user_id') !!}
+            {!! Form::text('user_id',null,['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('category_id','category_id') !!}
+            {!! Form::text('category_id',null,['class'=>'form-control']) !!}
+        </div>
 
-            <form method="post" action="/posts">
+        <div class="form-group">
+            {!! Form::label('subcategory_id','subcategory_id') !!}
+            {!! Form::text('subcategory_id',null,['class'=>'form-control']) !!}
+        </div>
 
-                <input type="number" name="user_id" placeholder="user_id">
-                {{csrf_field()}}
-                <input type="number" name="category_id" placeholder="category_id">
-                <input type="number" name="subcategory_id" placeholder="subcategory_id">
-                <input type="number" name="manufacturer_id" placeholder="manufacturer_id">
-                <input type="number" name="model_id" placeholder="model_id">
-                <input type="number" name="condition_id" placeholder="condition_id">
-                <input type="number" name="price" placeholder="price">
-                <input type="number" name="condition_id" placeholder="condition_id">
-                <input type="text" name="title" placeholder="title">
-                <input type="text" name="description" placeholder="description">
+        <div class="form-group">
+            {!! Form::label('manufacturer_id','manufacturer_id') !!}
+            {!! Form::text('manufacturer_id',null,['class'=>'form-control']) !!}
+        </div>
 
+        <div class="form-group">
+            {!! Form::label('model_id','model_id') !!}
+            {!! Form::text('model_id',null,['class'=>'form-control']) !!}
+        </div>
 
-                <input type="submit" name="submit">
+        <div class="form-group">
+            {!! Form::label('condition_id','condition_id') !!}
+            {!! Form::text('condition_id',null,['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('price','price') !!}
+            {!! Form::text('price',null,['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('title','title') !!}
+            {!! Form::text('title',null,['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('description','description') !!}
+            {!! Form::text('description',null,['class'=>'form-control']) !!}
+        </div>
 
-            </form>
+        <div class="form-group">
+            {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
+        </div>
+
+        {!! Form::close() !!}
 
 
     </div>
