@@ -2,8 +2,19 @@
 
 @section('body')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <h2>Create page</h2>
-        {!! Form::open(['method'=>'POST','action'=>'PostsController@store']) !!}
+
+            {!! Form::open(['method'=>'POST','action'=>'PostsController@store','files'=>'true']) !!}
         <div class="form-group">
             {!! Form::label('user_id','user_id') !!}
             {!! Form::text('user_id',null,['class'=>'form-control']) !!}
@@ -45,6 +56,10 @@
             {!! Form::text('description',null,['class'=>'form-control']) !!}
         </div>
 
+        <div class="form-group">
+            {!! Form::label('Upload','Upload Photo') !!}
+            {!! Form::file('imageupload',null,['class'=>'form-control']) !!}
+        </div>
         <div class="form-group">
             {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
         </div>

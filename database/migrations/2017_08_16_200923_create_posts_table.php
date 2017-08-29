@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->integer('price');
             $table->string('title');
             $table->text('description');
+            $table->integer('image_id');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

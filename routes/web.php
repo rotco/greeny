@@ -11,6 +11,8 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,3 +22,8 @@ Route::get('/', function () {
 //});
 
 Route::resource('posts', 'PostsController');
+
+Route::get('/getuser/{id}',function($id){
+    $user=User::find($id);
+    echo $user->email;
+} );

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,7 @@ class PostsController extends Controller
     {
         return view('posts.create');
 
+
     }
 
     /**
@@ -36,10 +38,23 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
 {
-        Post::create($request->all());
-        return redirect('/posts');
+//        $this->validate($request,[
+//            'title'=>'max:255|required'
+//        ]);
+        $input=$request->all();
+        if($file=$request->file('imageupload')){
+            $name=$file->getClientOriginalName();
+            $file->move('images',$name);
+            $input['image_path']=$file->getPath();
+            Post::create($input);
+//            return redirect('/posts');
+            return dd($file);
+        }
+
+
+
 }
 
     /**
