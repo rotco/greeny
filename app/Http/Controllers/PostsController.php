@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
 use App\Post;
+use App\Image;
 use Illuminate\Http\Request;
 
 
@@ -47,12 +48,26 @@ class PostsController extends Controller
         if($file=$request->file('imageupload')){
             $name=$file->getClientOriginalName();
             $file->move('images',$name);
-            $input['image_path']=$file->getPath();
-            Post::create($input);
+            $input['image_id']=1;
+            $post=Post::create($input);
+            $image=new Image;
+            $image->filename=$name;
+            $image->post_id=$post->id;
+            $image->approved=1;
+            $image->save();
+            $post->image_id=$image->id;
+            $post->save();
+            return $post->id;
+//            return dd($input);
+
+
+            //            Post::create($input);
 //            return redirect('/posts');
+//            return dd($file);
+        }
+        else {
             return dd($file);
         }
-
 
 
 }
