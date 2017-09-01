@@ -27,3 +27,6 @@ Route::get('/getuser/{id}',function($id){
     $user=User::find($id);
     echo $user->email;
 } );
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
