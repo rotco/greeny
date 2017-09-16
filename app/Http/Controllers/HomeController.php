@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $user=Auth::user();
+        $request->session()->put(['name'=>$user->name]);
+        return $request->session()->all();
+//        return view('home');
+    }
+    public function test(){
+        return "TEST";
     }
 }

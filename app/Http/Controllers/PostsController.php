@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePostRequest;
 use App\Post;
 use App\Image;
 use Illuminate\Http\Request;
+
 
 
 class PostsController extends Controller
@@ -15,8 +17,15 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('isAdmin', ['only' => ['create', 'store', 'edit', 'delete']]);
+    }
     public function index()
     {
+        $this->middleware('isAdmin');
         $posts=Post::all();
         return view('posts.index',compact('posts'));
     }
